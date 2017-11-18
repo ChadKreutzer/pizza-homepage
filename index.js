@@ -1,10 +1,5 @@
-const body = document.body;
-const contentDiv = document.querySelector("#content");
-
-(function buildPage() {
-  buildTabs();
-  buildContentContainer();
-})()
+const menuContainer = buildTabs();
+const contentContainer = buildContentContainer();
 
 function buildTabs() {
   let menuContainer = document.createElement("div");
@@ -17,12 +12,13 @@ function buildTabs() {
     menuContainer.appendChild(div);
   });
 
-  body.appendChild(menuContainer);
+  document.body.appendChild(menuContainer);
+  return menuContainer;
 }
 
 function buildContentContainer() {
   let contentContainer = document.createElement("div");
   contentContainer.id = "content";
-  body.appendChild(contentContainer);
-
+  document.body.appendChild(contentContainer);
+  return contentContainer;
 }
