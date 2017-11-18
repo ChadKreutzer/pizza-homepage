@@ -1,7 +1,9 @@
+const body = document.body;
 const contentDiv = document.querySelector("#content");
 
 (function buildPage() {
   buildTabs();
+  buildContentContainer();
 })()
 
 function buildTabs() {
@@ -15,5 +17,12 @@ function buildTabs() {
     menuContainer.appendChild(div);
   });
 
-  contentDiv.appendChild(menuContainer);
+  body.appendChild(menuContainer);
+}
+
+function buildContentContainer() {
+  let contentContainer = document.createElement("div");
+  contentContainer.id = "content";
+  body.appendChild(contentContainer);
+
 }
