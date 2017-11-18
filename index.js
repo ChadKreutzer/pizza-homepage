@@ -7,7 +7,7 @@ function buildTabs() {
 
   ["Home", "Menu", "Contact-Info"].forEach(function(section) {
     let div = document.createElement('div');
-    div.classList.add("tab", section)
+    div.classList.add("tab", section.toLowerCase());
     div.textContent = section;
     menuContainer.appendChild(div);
   });
