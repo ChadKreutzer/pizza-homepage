@@ -26,7 +26,7 @@ function buildContentContainer() {
 }
 
 function clearContent(){
-  console.log("CLEAR");
+  contentContainer.innerHTML = "";
 }
 
 function generateText({content, type}) {
@@ -45,7 +45,7 @@ function generateHomePage(parentContainer) {
   let pizzaImage = generateImage(pizzaImageSrc);
   let pizzaTextBlock = generatePizzaText(pizzaText);
 
-  [pizzaImage, pizzaTextBlock].forEach(element => parentContainer.appendChild(element)); //appends to parentContainer, instead return something
+  return [pizzaImage, pizzaTextBlock];
 
   function generatePizzaText(){
     let textContainer = document.createElement("div")
@@ -95,9 +95,27 @@ function generateContactPage() {
 
 }
 
-function showPage(container, tab) {
+function showPage(page) {
   clearContent();
-  container.appendChild(tab);
+  if(page === "Menu") {
+    showMenu();
+  } else if(page === "Contact-Info") {
+    showContactInfo();
+  } else {
+    showHome();
+  }
 }
 
-showPage(contentContainer, generateMenuPage());
+
+function showHome() {
+  let page = generateHomePage();
+  page.forEach(element => contentContainer.appendChild(element));
+}
+
+function showMenu() {
+  contentContainer.appendChild(generateMenuPage());
+}
+
+function showContactInfo() {
+
+}
