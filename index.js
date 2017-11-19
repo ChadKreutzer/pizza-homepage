@@ -24,11 +24,12 @@ function buildContentContainer() {
   document.body.appendChild(contentContainer);
   return contentContainer;
 }
+
 function clearContent(){
   console.log("CLEAR");
 }
 
-function generateText(content, type) {
+function generateText({content, type}) {
   let text = document.createElement(type)
   text.textContent = content;
   return text;
@@ -48,22 +49,49 @@ function generateHomePage(parentContainer) {
   [pizzaImage, pizzaTextBlock].forEach(element => parentContainer.appendChild(element));
 
   function generatePizzaText(){
-    textContainer = document.createElement("div")
+    let textContainer = document.createElement("div")
     textContainer.classList.add("description");
 
-    [["Time For Pizza!", "h3"], [pizzaText, "p"]].forEach((item) => textContainer.appendChild(generateText(...item)));
+    let textElements = [
+      {content: "Time For Pizza!", type: "h3"},
+      {content: pizzaText, type: "p"}
+    ];
+
+    textElements.forEach((element) => textContainer.appendChild(generateText(element)));
 
     return textContainer;
   }
 }
 
 
-function generateMenuPage() {
-  let menuText = generateMenuText();
+function generateMenuPage(parentContainer) {
+  let menuList = generateMenuList();
+  parentContainer.appendChild(menuList);
 
-  function generateMenuText(){
-
+  function generateMenuList(){
+    let menuListContainer = document.createElement("div");
+    let pizzaPrices = {
+      type: "ul",
+      items: [{item: "Pepperonni Pizza", price: 10.99},
+              {item: "Cheese Pizza", price: 9.99},
+              {item: "Mushroom Pizza", price: 10.50},
+              {item: "Chicken Pizza", price: 10.00}]
+    }
+    menuListContainer.appendChild(generateList(pizzaPrices));
+    return menuListContainer;
   }
+}
+
+
+function generateList({type, items}) {
+  let list = document.createElement(type);
+
+  items.forEach(({item, price}) => {
+    listItem = document.createElement("li");
+    listItem.textContent = `${item}: $${price}`
+    list.appendChild(listItem);
+  });
+  return list;
 }
 
 function generateContactPage() {
