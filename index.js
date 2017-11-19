@@ -41,7 +41,6 @@ function generateImage(imageSrc) {
   return image;
 }
 
-
 function generateHomePage(parentContainer) {
   let pizzaImage = generateImage(pizzaImageSrc);
   let pizzaTextBlock = generatePizzaText(pizzaText);
@@ -63,7 +62,6 @@ function generateHomePage(parentContainer) {
   }
 }
 
-
 function generateMenuPage(parentContainer) {
   let menuList = generateMenuList();
   parentContainer.appendChild(menuList);
@@ -81,7 +79,6 @@ function generateMenuPage(parentContainer) {
     return menuListContainer;
   }
 }
-
 
 function generateList({type, items}) {
   let list = document.createElement(type);
