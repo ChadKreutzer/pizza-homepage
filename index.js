@@ -1,22 +1,25 @@
-const menuContainer = buildTabs();
+const tabContainer = buildTabs();
 const contentContainer = buildContentContainer();
-const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingrediants. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingrediants are locally sourced and bought straight from the farmers themselves. Try one today!"
-const pizzaImageSrc = "http://4.bp.blogspot.com/_21d4pBhy3P4/RYRZ_ba8umI/AAAAAAAAADg/3Ri9X433shM/s320/pizzaclock-4.jpg"
-addTabEventListeners();
+const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingrediants. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingrediants are locally sourced and bought straight from the farmers themselves. Try one today!";
+const pizzaImageSrc = "http://4.bp.blogspot.com/_21d4pBhy3P4/RYRZ_ba8umI/AAAAAAAAADg/3Ri9X433shM/s320/pizzaclock-4.jpg";
+
+(function buildWebPage() {
+  document.body.appendChild(tabContainer);
+  addTabEventListeners();
+  showPage("Home");
+})();
 
 function buildTabs() {
-  let menuContainer = document.createElement("div");
-  menuContainer.classList.add("menu-container");
+  let tabContainer = document.createElement("div");
+  tabContainer.classList.add("menu-container");
 
   ["Home", "Menu", "Contact-Info"].forEach(function(section) {
     let div = document.createElement('div');
     div.classList.add("tab", section.toLowerCase());
     div.textContent = section;
-    menuContainer.appendChild(div);
+    tabContainer.appendChild(div);
   });
-
-  document.body.appendChild(menuContainer);
-  return menuContainer;
+  return tabContainer;
 }
 
 function buildContentContainer() {
@@ -29,8 +32,8 @@ function buildContentContainer() {
 
 
 function addTabEventListeners() { //BROKEN
-  for(let i = 0; i< menuContainer.children.length; i++){
-    let tab = menuContainer.children[i];
+  for(let i = 0; i< tabContainer.children.length; i++){
+    let tab = tabContainer.children[i];
     tab.addEventListener("click", () => showPage(tab.textContent));
   }
 }
@@ -72,8 +75,6 @@ function generateHomePage(parentContainer) {
   }
 }
 
-
-
 function generateMenuPage() {
   let menuList = generateMenuList();
   return menuList;
@@ -107,5 +108,26 @@ function generateMenuPage() {
 function generateContactPage() {}
 
 function showPage(tabName) {
-  //HAVE IT SHOW PAGE
+  clearContent(contentContainer);
+  appendToPage(contentContainer, selectGenerator(tabName));
+}
+
+function selectGenerator(tabName) {
+  if(tabName === "Home"){
+    return generateHomePage();
+  } else if (tabName === "Menu") {
+    return generateMenuPage();
+  } else {
+    return generateContactPage();
+  }
+}
+
+function appendToPage(container, element){
+  if(element instanceof Array){
+    for(let i = 0; i < element.length; i++) {
+      container.appendChild(element[i]);
+    }
+  } else{
+  container.appendChild(element);
+  }
 }
