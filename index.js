@@ -2,6 +2,7 @@ const menuContainer = buildTabs();
 const contentContainer = buildContentContainer();
 const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingrediants. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingrediants are locally sourced and bought straight from the farmers themselves. Try one today!"
 const pizzaImageSrc = "http://4.bp.blogspot.com/_21d4pBhy3P4/RYRZ_ba8umI/AAAAAAAAADg/3Ri9X433shM/s320/pizzaclock-4.jpg"
+addTabEventListeners();
 
 function buildTabs() {
   let menuContainer = document.createElement("div");
@@ -25,20 +26,17 @@ function buildContentContainer() {
   return contentContainer;
 }
 
-function clearContent(){
-  contentContainer.innerHTML = "";
+
+
+function addTabEventListeners() { //BROKEN
+  for(let i = 0; i< menuContainer.children.length; i++){
+    let tab = menuContainer.children[i];
+    tab.addEventListener("click", () => showPage(tab.textContent));
+  }
 }
 
-function generateText({content, type}) {
-  let text = document.createElement(type)
-  text.textContent = content;
-  return text;
-}
-
-function generateImage(imageSrc) {
-  let image = document.createElement("img");
-  image.setAttribute("src", imageSrc);
-  return image;
+function clearContent(container){
+  container.innerHTML = "";
 }
 
 function generateHomePage(parentContainer) {
@@ -60,7 +58,21 @@ function generateHomePage(parentContainer) {
 
     return textContainer;
   }
+
+  function generateImage(imageSrc) {
+    let image = document.createElement("img");
+    image.setAttribute("src", imageSrc);
+    return image;
+  }
+
+  function generateText({content, type}) {
+    let text = document.createElement(type)
+    text.textContent = content;
+    return text;
+  }
 }
+
+
 
 function generateMenuPage() {
   let menuList = generateMenuList();
@@ -78,44 +90,22 @@ function generateMenuPage() {
     menuListContainer.appendChild(generateList(pizzaPrices));
     return menuListContainer;
   }
-}
 
-function generateList({type, items}) {
-  let list = document.createElement(type);
+  function generateList({type, items}) {
+    let list = document.createElement(type);
 
-  items.forEach(({item, price}) => {
-    listItem = document.createElement("li");
-    listItem.textContent = `${item}: $${price}`
-    list.appendChild(listItem);
-  });
-  return list;
-}
-
-function generateContactPage() {
-
-}
-
-function showPage(page) {
-  clearContent();
-  if(page === "Menu") {
-    showMenu();
-  } else if(page === "Contact-Info") {
-    showContactInfo();
-  } else {
-    showHome();
+    items.forEach(({item, price}) => {
+      listItem = document.createElement("li");
+      listItem.textContent = `${item}: $${price}`
+      list.appendChild(listItem);
+    });
+    return list;
   }
 }
 
 
-function showHome() {
-  let page = generateHomePage();
-  page.forEach(element => contentContainer.appendChild(element));
-}
+function generateContactPage() {}
 
-function showMenu() {
-  contentContainer.appendChild(generateMenuPage());
-}
-
-function showContactInfo() {
-
+function showPage(tabName) {
+  //HAVE IT SHOW PAGE
 }
