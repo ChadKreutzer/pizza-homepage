@@ -45,7 +45,7 @@ function generateHomePage(parentContainer) {
   let pizzaImage = generateImage(pizzaImageSrc);
   let pizzaTextBlock = generatePizzaText(pizzaText);
 
-  [pizzaImage, pizzaTextBlock].forEach(element => parentContainer.appendChild(element));
+  [pizzaImage, pizzaTextBlock].forEach(element => parentContainer.appendChild(element)); //appends to parentContainer, instead return something
 
   function generatePizzaText(){
     let textContainer = document.createElement("div")
@@ -62,9 +62,9 @@ function generateHomePage(parentContainer) {
   }
 }
 
-function generateMenuPage(parentContainer) {
+function generateMenuPage() {
   let menuList = generateMenuList();
-  parentContainer.appendChild(menuList);
+  return menuList;
 
   function generateMenuList(){
     let menuListContainer = document.createElement("div");
@@ -94,3 +94,10 @@ function generateList({type, items}) {
 function generateContactPage() {
 
 }
+
+function showPage(container, tab) {
+  clearContent();
+  container.appendChild(tab);
+}
+
+showPage(contentContainer, generateMenuPage());
