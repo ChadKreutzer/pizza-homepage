@@ -2,6 +2,7 @@ const tabContainer = buildTabs();
 const contentContainer = buildContentContainer();
 const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingrediants. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingrediants are locally sourced and bought straight from the farmers themselves. Try one today!";
 const pizzaImageSrc = "http://4.bp.blogspot.com/_21d4pBhy3P4/RYRZ_ba8umI/AAAAAAAAADg/3Ri9X433shM/s320/pizzaclock-4.jpg";
+const contactInfo = "Come visit our wonderful restaraunt at 222 S main st. in nemerous locations. Get ahold of us!";
 
 (function buildWebPage() {
   document.body.appendChild(tabContainer);
@@ -92,20 +93,33 @@ function generateMenuPage() {
     return menuListContainer;
   }
 
-  function generateList({type, items}) {
-    let list = document.createElement(type);
+}
 
-    items.forEach(({item, price}) => {
-      listItem = document.createElement("li");
-      listItem.textContent = `${item}: $${price}`
-      list.appendChild(listItem);
-    });
-    return list;
-  }
+function generateList({type, items}) {
+  let list = document.createElement(type);
+
+  items.forEach(({item, info}) => {
+    listItem = document.createElement("li");
+    listItem.textContent = `${item}: ${info}`
+    list.appendChild(listItem);
+  });
+  return list;
 }
 
 
-function generateContactPage() {}
+function generateContactPage() {
+  let contactParagraph = document.createElement("p");
+  contactParagraph.textContent = contactInfo;
+
+  bullets = {type: "ul",
+            items: [{item: "Store Phone", info: "1800-666-6666"},
+                    {item: "Email", info: "timeforpizza@pizzaplace.moc"},
+                    {item: "Mail", info: "City, State: Box 1: 55584"}]
+            }
+
+  let contactBullets = generateList(bullets);
+  return [contactParagraph, contactBullets];
+}
 
 function showPage(tabName) {
   clearContent(contentContainer);
