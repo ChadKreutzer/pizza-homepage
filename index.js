@@ -6,6 +6,7 @@ const contactInfo = "Come visit our wonderful restaraunt at 222 S main st. in ne
 
 (function buildWebPage() {
   document.body.appendChild(tabContainer);
+  document.body.appendChild(contentContainer);
   addTabEventListeners();
   showPage("Home");
 })();
@@ -26,11 +27,8 @@ function buildTabs() {
 function buildContentContainer() {
   let contentContainer = document.createElement("div");
   contentContainer.id = "content";
-  document.body.appendChild(contentContainer);
   return contentContainer;
 }
-
-
 
 function addTabEventListeners() { //BROKEN
   for(let i = 0; i< tabContainer.children.length; i++){
