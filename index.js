@@ -30,7 +30,7 @@ function buildContentContainer() {
   return contentContainer;
 }
 
-function addTabEventListeners() { //BROKEN
+function addTabEventListeners() {
   for(let i = 0; i< tabContainer.children.length; i++){
     let tab = tabContainer.children[i];
     tab.addEventListener("click", () => showPage(tab.textContent));
