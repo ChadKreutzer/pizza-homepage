@@ -1,5 +1,7 @@
 body {
-  background-color: grey;
+  background-color: #2f4858;
+  text-align: center;
+  /* color: #2f4858; */
 }
 
 .tab {
@@ -11,12 +13,23 @@ body {
 }
 
 #content {
-  background-color: white;
-  height: 90%;
+  background-color: #f6ae2d;
+  height: 75%;
   width: 70%;
   max-width: 760px;
   position: absolute;
   left: 151px;
   top: 6px;
   z-index: -1;
+  padding: 50px;
+}
+
+#content img {
+  width: 600px;
+  height: 360px;
+}
+
+.clicked {
+  border-right: none;
+  background-color: #f6ae2d
 }

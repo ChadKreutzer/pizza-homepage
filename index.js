@@ -1,11 +1,12 @@
 const tabContainer = buildTabs();
 const contentContainer = buildContentContainer();
-const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingrediants. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingrediants are locally sourced and bought straight from the farmers themselves. Try one today!";
-const pizzaImageSrc = "http://4.bp.blogspot.com/_21d4pBhy3P4/RYRZ_ba8umI/AAAAAAAAADg/3Ri9X433shM/s320/pizzaclock-4.jpg";
-const contactInfo = "Come visit our wonderful restaraunt at 222 S main st. in nemerous locations. Get ahold of us!";
+const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingredients. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingredients are locally sourced and bought straight from the farmers themselves. Try one today!";
+const pizzaImageSrc = "http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg";
+const contactInfo = "Come visit our wonderful restaurant at 222 S main ST. In numerous locations. Get ahold of us!";
 
 (function buildWebPage() {
   document.body.appendChild(tabContainer);
+  tabContainer.firstChild.classList.add("clicked");
   document.body.appendChild(contentContainer);
   addTabEventListeners();
   showPage("Home");
@@ -33,12 +34,22 @@ function buildContentContainer() {
 function addTabEventListeners() {
   for(let i = 0; i< tabContainer.children.length; i++){
     let tab = tabContainer.children[i];
-    tab.addEventListener("click", () => showPage(tab.textContent));
+    tab.addEventListener("click", () => {
+      showPage(tab.textContent);
+      clearTabs();
+      tab.classList.add("clicked");
+    });
   }
 }
 
 function clearContent(container){
   container.innerHTML = "";
+}
+
+function clearTabs() {
+  for(let i = 0; i < tabContainer.children.length; i++) {
+    tabContainer.children[i].classList.remove("clicked");
+  }
 }
 
 function generateHomePage(parentContainer) {
@@ -82,10 +93,10 @@ function generateMenuPage() {
     let menuListContainer = document.createElement("div");
     let pizzaPrices = {
       type: "ul",
-      items: [{item: "Pepperonni Pizza", price: 10.99},
-              {item: "Cheese Pizza", price: 9.99},
-              {item: "Mushroom Pizza", price: 10.50},
-              {item: "Chicken Pizza", price: 10.00}]
+      items: [{item: "Pepperonni Pizza", info: 10.99},
+              {item: "Cheese Pizza", info: 9.99},
+              {item: "Mushroom Pizza", info: 10.50},
+              {item: "Chicken Pizza", info: 10.00}]
     }
     menuListContainer.appendChild(generateList(pizzaPrices));
     return menuListContainer;
@@ -112,7 +123,7 @@ function generateContactPage() {
   bullets = {type: "ul",
             items: [{item: "Store Phone", info: "1800-666-6666"},
                     {item: "Email", info: "timeforpizza@pizzaplace.moc"},
-                    {item: "Mail", info: "City, State: Box 1: 55584"}]
+                    {item: "Mail", info: "City State, Box 1, 55584"}]
             }
 
   let contactBullets = generateList(bullets);
