@@ -13,11 +13,11 @@ const contactInfo = "Come visit our wonderful restaurant at 222 S main ST. In nu
 })();
 
 function buildTabs() {
-  let tabContainer = document.createElement("div");
+  const tabContainer = document.createElement("div");
   tabContainer.classList.add("menu-container");
 
   ["Home", "Menu", "Contact-Info"].forEach(function(section) {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.classList.add("tab", section.toLowerCase());
     div.textContent = section;
     tabContainer.appendChild(div);
@@ -26,7 +26,7 @@ function buildTabs() {
 }
 
 function buildContentContainer() {
-  let contentContainer = document.createElement("div");
+  const contentContainer = document.createElement("div");
   contentContainer.id = "content";
   return contentContainer;
 }
@@ -53,16 +53,16 @@ function clearTabs() {
 }
 
 function generateHomePage(parentContainer) {
-  let pizzaImage = generateImage(pizzaImageSrc);
-  let pizzaTextBlock = generatePizzaText(pizzaText);
+  const pizzaImage = generateImage(pizzaImageSrc);
+  const pizzaTextBlock = generatePizzaText(pizzaText);
 
   return [pizzaImage, pizzaTextBlock];
 
   function generatePizzaText(){
-    let textContainer = document.createElement("div")
+    const textContainer = document.createElement("div")
     textContainer.classList.add("description");
 
-    let textElements = [
+    const textElements = [
       {content: "Time For Pizza!", type: "h3"},
       {content: pizzaText, type: "p"}
     ];
@@ -73,25 +73,25 @@ function generateHomePage(parentContainer) {
   }
 
   function generateImage(imageSrc) {
-    let image = document.createElement("img");
+    const image = document.createElement("img");
     image.setAttribute("src", imageSrc);
     return image;
   }
 
   function generateText({content, type}) {
-    let text = document.createElement(type)
+    const text = document.createElement(type)
     text.textContent = content;
     return text;
   }
 }
 
 function generateMenuPage() {
-  let menuList = generateMenuList();
+  const menuList = generateMenuList();
   return menuList;
 
   function generateMenuList(){
-    let menuListContainer = document.createElement("div");
-    let pizzaPrices = {
+    const menuListContainer = document.createElement("div");
+    const pizzaPrices = {
       type: "ul",
       items: [{item: "Pepperonni Pizza", info: 10.99},
               {item: "Cheese Pizza", info: 9.99},
@@ -105,7 +105,7 @@ function generateMenuPage() {
 }
 
 function generateList({type, items}) {
-  let list = document.createElement(type);
+  const list = document.createElement(type);
 
   items.forEach(({item, info}) => {
     listItem = document.createElement("li");
@@ -117,7 +117,7 @@ function generateList({type, items}) {
 
 
 function generateContactPage() {
-  let contactParagraph = document.createElement("p");
+  const contactParagraph = document.createElement("p");
   contactParagraph.textContent = contactInfo;
 
   bullets = {type: "ul",
@@ -126,7 +126,7 @@ function generateContactPage() {
                     {item: "Mail", info: "City State, Box 1, 55584"}]
             }
 
-  let contactBullets = generateList(bullets);
+  const contactBullets = generateList(bullets);
   return [contactParagraph, contactBullets];
 }
 
