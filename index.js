@@ -42,8 +42,13 @@ function clearTabs() {
 function generateHomePage(parentContainer) {
   const pizzaImage = generateImage("http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg");
   const pizzaTextBlock = generatePizzaText();
+  const homePageContainer = document.createElement("div");
 
-  return [pizzaImage, pizzaTextBlock];
+  [pizzaImage, pizzaTextBlock].forEach(function(element) {
+    homePageContainer.appendChild(element);
+  })
+
+  return homePageContainer;
 
   function generatePizzaText(){
     const textContainer = document.createElement("div");
@@ -111,6 +116,7 @@ function generateList({type, items}) {
 
 
 function generateContactPage() {
+  const contactPageContainer = document.createElement("div");
   const contactParagraph = document.createElement("p");
   contactParagraph.textContent = "Come visit our wonderful restaurant at 222 S main ST. In numerous locations. Get ahold of us!";
 
@@ -121,12 +127,16 @@ function generateContactPage() {
             };
 
   const contactBullets = generateList(bullets);
-  return [contactParagraph, contactBullets];
+  [contactParagraph, contactBullets].forEach(function(element){
+    contactPageContainer.appendChild(element);
+  })
+
+  return contactPageContainer;
 }
 
 function showPage(tabName) {
   clearContent(tabContentContainer);
-  appendToPage(tabContentContainer, selectGenerator(tabName));
+  tabContentContainer.appendChild(selectGenerator(tabName));
 }
 
 function selectGenerator(tabName) {
@@ -136,15 +146,5 @@ function selectGenerator(tabName) {
     return generateMenuPage();
   } else {
     return generateContactPage();
-  }
-}
-
-function appendToPage(container, element){
-  if(element instanceof Array){
-    for(let i = 0; i < element.length; i++) {
-      container.appendChild(element[i]);
-    }
-  } else{
-  container.appendChild(element);
   }
 }
