@@ -112,7 +112,7 @@ function generateContactPage() {
   const contactPageContainer = document.createElement("div");
   const contactParagraph = generateTextBlock({content: "Come visit our wonderful restaurant at 222 S main ST. In numerous locations. Get ahold of us!", type: "p"});
 
-  bullets = {type: "ul",
+  const bullets = {type: "ul",
             items: [{item: "Store Phone", info: "1800-666-6666"},
                     {item: "Email", info: "timeforpizza@pizzaplace.moc"},
                     {item: "Mail", info: "City State, Box 1, 55584"}]
