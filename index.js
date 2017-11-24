@@ -1,37 +1,32 @@
 const tabContentContainer = buildContentContainer();
-const pizzaImageSrc = "http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg";
-const tabContainer = buildTabs();
+const tabContainer = document.createElement("div");
 
-document.body.appendChild(tabContainer);
-tabContainer.firstChild.classList.add("clicked");
-document.body.appendChild(tabContentContainer);
-showPage("Home");
+tabContainer.classList.add("menu-container");
+
+["Home", "Menu", "Contact-Info"].forEach(function(section) {
+  const div = document.createElement("div");
+  div.classList.add("tab", section.toLowerCase());
+  div.textContent = section;
+  tabContainer.appendChild(div);
+});
 
 Array.from(tabContainer.children).forEach(function(tab) {
   tab.addEventListener("click", function() {
     showPage(tab.textContent);
     clearTabs();
     tab.classList.add("clicked");
-  })
+  });
 });
 
-function buildTabs() {
-  const tabContainer = document.createElement("div");
-  tabContainer.classList.add("menu-container");
-
-  ["Home", "Menu", "Contact-Info"].forEach(function(section) {
-    const div = document.createElement('div');
-    div.classList.add("tab", section.toLowerCase());
-    div.textContent = section;
-    tabContainer.appendChild(div);
-  });
-  return tabContainer;
-}
+document.body.appendChild(tabContainer);
+tabContainer.firstChild.classList.add("clicked");
+document.body.appendChild(tabContentContainer);
+showPage("Home");
 
 function buildContentContainer() {
-  const tabContentContainer = document.createElement("div");
-  tabContentContainer.id = "content";
-  return tabContentContainer;
+  const ContentContainer = document.createElement("div");
+  ContentContainer.id = "content";
+  return ContentContainer;
 }
 
 
@@ -40,9 +35,9 @@ function clearContent(container){
 }
 
 function clearTabs() {
-  for(let i = 0; i < tabContainer.children.length; i++) {  //document.querySelectorAll(.tabs)
-    tabContainer.children[i].classList.remove("clicked");
-  }
+  document.querySelectorAll(".tab").forEach(function(tab) {
+    tab.classList.remove("clicked");
+  })
 }
 
 function generateHomePage(parentContainer) {
