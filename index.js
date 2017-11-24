@@ -1,6 +1,7 @@
-const tabContentContainer = buildContentContainer();
-const tabContainer = document.createElement("div");
+const tabContentContainer = document.createElement("div");
+tabContentContainer.id = "content";
 
+const tabContainer = document.createElement("div");
 tabContainer.classList.add("menu-container");
 
 ["Home", "Menu", "Contact-Info"].forEach(function(section) {
@@ -29,17 +30,9 @@ tabContainer.firstChild.classList.add("clicked");
 document.body.appendChild(tabContentContainer);
 showPage("Home");
 
-function buildContentContainer() {
-  const ContentContainer = document.createElement("div");
-  ContentContainer.id = "content";
-  return ContentContainer;
-}
-
 function clearContent(container){
   container.innerHTML = "";
 }
-
-
 
 function generateHomePage(parentContainer) {
   const pizzaImage = generateImageElement("http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg");
@@ -76,7 +69,7 @@ function generateHomePage(parentContainer) {
     return textContainer;
   }
 
-  function generateImageElementElement(imageSrc) {
+  function generateImageElement(imageSrc) {
     const image = document.createElement("img");
     image.setAttribute("src", imageSrc);
     return image;
@@ -90,12 +83,7 @@ function generateTextBlock({content, type}) {
   return text;
 }
 
-function generateMenuPage() {
-  const menuList = generateMenuList();
-  return menuList;
-}
-
-function generateMenuList(){
+function generateMenuPage(){
   const menuListContainer = document.createElement("div");
   const pizzaPrices = {
             type: "ul",
