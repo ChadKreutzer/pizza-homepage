@@ -13,10 +13,16 @@ tabContainer.classList.add("menu-container");
 Array.from(tabContainer.children).forEach(function(tab) {
   tab.addEventListener("click", function() {
     showPage(tab.textContent);
-    clearTabs();
+    clearSelectedTabs();
     tab.classList.add("clicked");
   });
 });
+
+function clearSelectedTabs() {
+  document.querySelectorAll(".tab").forEach(function(tab) {
+    tab.classList.remove("clicked");
+  });
+}
 
 document.body.appendChild(tabContainer);
 tabContainer.firstChild.classList.add("clicked");
@@ -33,14 +39,10 @@ function clearContent(container){
   container.innerHTML = "";
 }
 
-function clearTabs() {
-  document.querySelectorAll(".tab").forEach(function(tab) {
-    tab.classList.remove("clicked");
-  });
-}
+
 
 function generateHomePage(parentContainer) {
-  const pizzaImage = generateImage("http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg");
+  const pizzaImage = generateImageElement("http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg");
   const pizzaTextBlock = generatePizzaText();
   const homePageContainer = document.createElement("div");
 
@@ -67,22 +69,25 @@ function generateHomePage(parentContainer) {
                  Try one today!`, type: "p"}
     ];
 
-    textElements.forEach((element) => textContainer.appendChild(generateText(element)));
+    textElements.forEach(function(element) {
+      textContainer.appendChild(generateTextBlock(element))
+    });
 
     return textContainer;
   }
 
-  function generateImage(imageSrc) {
+  function generateImageElementElement(imageSrc) {
     const image = document.createElement("img");
     image.setAttribute("src", imageSrc);
     return image;
   }
 
-  function generateText({content, type}) {
-    const text = document.createElement(type);
-    text.textContent = content;
-    return text;
-  }
+}
+
+function generateTextBlock({content, type}) {
+  const text = document.createElement(type);
+  text.textContent = content;
+  return text;
 }
 
 function generateMenuPage() {
@@ -117,8 +122,7 @@ function generateList({type, items}) {
 
 function generateContactPage() {
   const contactPageContainer = document.createElement("div");
-  const contactParagraph = document.createElement("p");
-  contactParagraph.textContent = "Come visit our wonderful restaurant at 222 S main ST. In numerous locations. Get ahold of us!";
+  const contactParagraph = generateTextBlock({content: "Come visit our wonderful restaurant at 222 S main ST. In numerous locations. Get ahold of us!", type: "p"});
 
   bullets = {type: "ul",
             items: [{item: "Store Phone", info: "1800-666-6666"},
