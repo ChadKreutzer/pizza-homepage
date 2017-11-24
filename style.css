@@ -5,6 +5,10 @@ body {
   /* color: #2f4858; */
 }
 
+li {
+  list-style: none;
+}
+
 .tab {
   border-style: solid;
   width: 150px;
