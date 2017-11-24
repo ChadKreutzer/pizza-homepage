@@ -7,9 +7,8 @@ const pizzaImageSrc = "http://www.foodanddine.com/wp-content/uploads/2016/05/Piz
   document.body.appendChild(tabContainer);
   tabContainer.firstChild.classList.add("clicked");
   document.body.appendChild(contentContainer);
-  addTabEventListeners();
-  showPage("Home");
 })();
+  showPage("Home");
 
 function buildTabs() {
   const tabContainer = document.createElement("div");
@@ -24,22 +23,20 @@ function buildTabs() {
   return tabContainer;
 }
 
+Array.from(tabContainer.children).forEach(function(tab) {
+  tab.addEventListener("click", function() {
+    showPage(tab.textContent);
+    clearTabs();
+    tab.classList.add("clicked");
+  })
+});
+
 function buildContentContainer() {
   const contentContainer = document.createElement("div");
   contentContainer.id = "content";
   return contentContainer;
 }
 
-function addTabEventListeners() {
-  for(let i = 0; i< tabContainer.children.length; i++){
-    let tab = tabContainer.children[i];
-    tab.addEventListener("click", () => {
-      showPage(tab.textContent);
-      clearTabs();
-      tab.classList.add("clicked");
-    });
-  }
-}
 
 function clearContent(container){
   container.innerHTML = "";
