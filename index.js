@@ -29,7 +29,6 @@ function buildContentContainer() {
   return ContentContainer;
 }
 
-
 function clearContent(container){
   container.innerHTML = "";
 }
@@ -37,7 +36,7 @@ function clearContent(container){
 function clearTabs() {
   document.querySelectorAll(".tab").forEach(function(tab) {
     tab.classList.remove("clicked");
-  })
+  });
 }
 
 function generateHomePage(parentContainer) {
@@ -47,7 +46,7 @@ function generateHomePage(parentContainer) {
   return [pizzaImage, pizzaTextBlock];
 
   function generatePizzaText(){
-    const textContainer = document.createElement("div")
+    const textContainer = document.createElement("div");
     textContainer.classList.add("description");
 
     const textElements = [
@@ -75,7 +74,7 @@ function generateHomePage(parentContainer) {
   }
 
   function generateText({content, type}) {
-    const text = document.createElement(type)
+    const text = document.createElement(type);
     text.textContent = content;
     return text;
   }
@@ -94,7 +93,7 @@ function generateMenuList(){
                     {item: "Cheese Pizza", info: 9.99},
                     {item: "Mushroom Pizza", info: 10.50},
                     {item: "Chicken Pizza", info: 10.00}]
-  }
+  };
   menuListContainer.appendChild(generateList(pizzaPrices));
   return menuListContainer;
 }
@@ -102,9 +101,9 @@ function generateMenuList(){
 function generateList({type, items}) {
   const list = document.createElement(type);
 
-  items.forEach(({item, info}) => {
+  items.forEach(function({item, info}) {
     listItem = document.createElement("li");
-    listItem.textContent = `${item}: ${info}`
+    listItem.textContent = `${item}: ${info}`;
     list.appendChild(listItem);
   });
   return list;
@@ -119,7 +118,7 @@ function generateContactPage() {
             items: [{item: "Store Phone", info: "1800-666-6666"},
                     {item: "Email", info: "timeforpizza@pizzaplace.moc"},
                     {item: "Mail", info: "City State, Box 1, 55584"}]
-            }
+            };
 
   const contactBullets = generateList(bullets);
   return [contactParagraph, contactBullets];
