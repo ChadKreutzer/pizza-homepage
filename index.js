@@ -46,7 +46,7 @@ function clearTabs() {
 }
 
 function generateHomePage(parentContainer) {
-  const pizzaImage = generateImage(pizzaImageSrc);
+  const pizzaImage = generateImage("http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg");
   const pizzaTextBlock = generatePizzaText();
 
   return [pizzaImage, pizzaTextBlock];
