@@ -13,22 +13,21 @@ tabContainer.classList.add("menu-container");
 
 Array.from(tabContainer.children).forEach(function(tab) {
   tab.addEventListener("click", function() {
-    showPage(tab.textContent);
-    clearSelectedTabs();
-    tab.classList.add("clicked");
+    showPage(tab);
+    toggleActiveTab(tab);
   });
 });
 
-function clearSelectedTabs() {
-  document.querySelectorAll(".tab").forEach(function(tab) {
-    tab.classList.remove("clicked");
-  });
+function toggleActiveTab(tab) {
+  const currentActiveTab = document.querySelector('.tab.clicked');
+  currentActiveTab.classList.remove('clicked');
+  tab.classList.add('clicked');
 }
 
 document.body.appendChild(tabContainer);
 tabContainer.firstChild.classList.add("clicked");
 document.body.appendChild(tabContentContainer);
-showPage("Home");
+showPage(tabContainer.firstChild);
 
 function clearContent(container){
   container.innerHTML = "";
@@ -126,7 +125,8 @@ function generateContactPage() {
   return contactPageContainer;
 }
 
-function showPage(tabName) {
+function showPage(tab) {
+  const tabName = tab.textContent;
   clearContent(tabContentContainer);
   tabContentContainer.appendChild(selectGenerator(tabName));
 }
