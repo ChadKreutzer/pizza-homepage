@@ -1,5 +1,4 @@
 const tabContentContainer = buildContentContainer();
-const pizzaText = "Our pizza is the best pizza to ever grace the earth. We hand make all pizzas and ingredients. We manage to hand craft pizzas that are wonderful, authentic, and still have a low cost. If possible our ingredients are locally sourced and bought straight from the farmers themselves. Try one today!";
 const pizzaImageSrc = "http://www.foodanddine.com/wp-content/uploads/2016/05/Pizza-capricciosa.jpg";
 const tabContainer = buildTabs();
 
