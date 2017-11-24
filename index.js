@@ -58,7 +58,15 @@ function generateHomePage(parentContainer) {
 
     const textElements = [
       {content: "Time For Pizza!", type: "h3"},
-      {content: pizzaText, type: "p"}
+      {content: `Our pizza is the best pizza to
+                 ever grace the earth. We hand make
+                 all pizzas and ingredients. We
+                 manage to hand craft pizzas that
+                 are wonderful, authentic, and still
+                 have a low cost. If possible our ingredients
+                 are locally sourced and bought
+                 straight from the farmers themselves.
+                 Try one today!`, type: "p"}
     ];
 
     textElements.forEach((element) => textContainer.appendChild(generateText(element)));
