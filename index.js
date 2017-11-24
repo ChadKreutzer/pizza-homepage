@@ -45,8 +45,8 @@ function generateHomePage(parentContainer) {
 
   return homePageContainer;
 
-  function generatePizzaText(){
-    const textContainer = document.createElement("div");
+  function generatePizzaText () {
+    const textContainer = document.createElement("div")
     textContainer.classList.add("description");
 
     const textElements = [
